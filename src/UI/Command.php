@@ -8,5 +8,7 @@ abstract readonly class Command
 {
     public abstract function cliLine(): string;
 
+    public abstract function description(): string;
+
     public abstract function execute(InputInterface $input, CLImate $output): int;
 }
