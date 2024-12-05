@@ -114,16 +114,16 @@ class Console
      */
     private function getCliLineParts(string $cliLine): array
     {
-        $pattern = '/^(\S+)(?:\s+(-{1,2}\w+(?:=\S+)?(?:\s+-{1,2}\w+(?:=\S+)?)*)?)?\s*(.*)?$/';
+        $pattern = '/^(\S+)(\S+)(?:\s+(-{1,2}\w+(?:=\S+)?(?:\s+-{1,2}\w+(?:=\S+)?)*)?)?\s*(.*)?$/';
 
         preg_match($pattern, $cliLine, $matches);
 
-        Assert::that(isset($matches[1]))->true();
+        Assert::that(isset($matches[2]))->true();
 
-        $commandPath = $matches[1];
+        $commandPath = $matches[2];
 
-        $options = $matches[2] ?? '';
-        $arguments = $matches[3] ?? '';
+        $options = $matches[3] ?? '';
+        $arguments = $matches[4] ?? '';
 
         return [
             'commandPath' => $commandPath,

@@ -31,11 +31,11 @@ class CommandsProvider
 
                 Assert::that($command)->isInstanceOf(Command::class);
 
-                $commands[explode(' ', $command->cliLine())[0]] = $class;
+                $commands[explode(' ', $command->cliLine())[0]] = $command;
             }
         }
 
-        return new $commands;
+        return $commands;
     }
 
     /**
