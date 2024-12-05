@@ -79,7 +79,7 @@ class Console
 
         $argumentsDefinitions = [];
 
-        foreach (explode(' ', $arguments) as $key => $argument) {
+        foreach (empty($arguments) ? [] : explode(' ', $arguments) as $key => $argument) {
             $argumentsDefinitions[] = new ArgumentDefinition($key, str_replace(':', '', $argument));
         }
 
@@ -102,7 +102,7 @@ class Console
 
         $argumentsDefinitions = [];
 
-        foreach (explode(' ', $options) as $key => $option) {
+        foreach (empty($options) ? [] : explode(' ', $options) as $key => $option) {
             $parts = explode('=', $option);
             $name = str_replace('-', '', $parts[0]);
             $default = $parts[1];
