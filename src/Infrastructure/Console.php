@@ -114,7 +114,7 @@ class Console
      */
     private function getCliLineParts(string $cliLine): array
     {
-        $pattern = '/^(\S+)\s+(\S+)\s+((?:--\S+(?:=\S+)?(?:\s+-\S+(?:=\S+)?)*)?)\s*(.+)?$/';
+        $pattern = '/^(\S*)(?:\s+)?(\S*)(?:\s+)?((?:--\S+(?:=\S+)?(?:\s+-\S+(?:=\S+)?)*)?)(?:\s*)?(.+)?$/';
 
         preg_match($pattern, $cliLine, $matches);
 
