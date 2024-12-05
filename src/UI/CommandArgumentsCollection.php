@@ -7,7 +7,7 @@ class CommandArgumentsCollection
     /**
      * @var array<string, CommandArgument>
      */
-    private array $arguments;
+    private array $arguments = [];
 
     public function add(string $argumentName, CommandArgument $commandArgument): void
     {

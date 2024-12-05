@@ -7,7 +7,7 @@ class CommandOptionsCollection
     /**
      * @var array<string, CommandOption>
      */
-    private array $options;
+    private array $options = [];
 
     public function add(string $optionName, CommandOption $commandOption): void
     {

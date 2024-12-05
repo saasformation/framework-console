@@ -47,10 +47,10 @@ class Console
             $optionsDefinitions = $this->getOptionsDefinitionsFromCommandInstance($commandInstance);
 
             $this->validateArguments($argumentsDefinitions, empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['arguments']));
-            $this->validateOptions($optionsDefinitions, empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['options']));
+            $this->validateOptions($optionsDefinitions, empty($cliLineParts['options']) ? [] : explode(' ', $cliLineParts['options']));
 
             $commandArgumentsCollection = $this->generateCommandArgumentsCollection(empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['arguments']), $argumentsDefinitions);
-            $commandOptionsCollection = $this->generateCommandOptionsCollection(empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['options']));
+            $commandOptionsCollection = $this->generateCommandOptionsCollection(empty($cliLineParts['options']) ? [] : explode(' ', $cliLineParts['options']));
 
             $input = new Input($commandArgumentsCollection, $commandOptionsCollection);
 
