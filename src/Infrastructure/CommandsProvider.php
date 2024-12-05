@@ -49,7 +49,7 @@ class CommandsProvider
 
         foreach ($classes as $class) {
             $reflectedClass = new ReflectionClass($class);
-            if(!$reflectedClass->isAbstract() && in_array(Command::class, class_implements($class))) {
+            if(!$reflectedClass->isAbstract() && $reflectedClass->isSubclassOf( Command::class)) {
                 $endpoints[] = $class;
             }
         }
