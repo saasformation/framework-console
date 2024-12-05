@@ -46,11 +46,11 @@ class Console
             $argumentsDefinitions = $this->getArgumentsDefinitionsFromCommandInstance($commandInstance);
             $optionsDefinitions = $this->getOptionsDefinitionsFromCommandInstance($commandInstance);
 
-            $this->validateArguments($argumentsDefinitions, explode(' ', $cliLineParts['arguments']));
-            $this->validateOptions($optionsDefinitions, explode(' ', $cliLineParts['options']));
+            $this->validateArguments($argumentsDefinitions, empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['arguments']));
+            $this->validateOptions($optionsDefinitions, empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['options']));
 
-            $commandArgumentsCollection = $this->generateCommandArgumentsCollection(explode(' ', $cliLineParts['arguments']), $argumentsDefinitions);
-            $commandOptionsCollection = $this->generateCommandOptionsCollection(explode(' ', $cliLineParts['options']));
+            $commandArgumentsCollection = $this->generateCommandArgumentsCollection(empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['arguments']), $argumentsDefinitions);
+            $commandOptionsCollection = $this->generateCommandOptionsCollection(empty($cliLineParts['arguments']) ? [] : explode(' ', $cliLineParts['options']));
 
             $input = new Input($commandArgumentsCollection, $commandOptionsCollection);
 
@@ -79,7 +79,7 @@ class Console
 
         $argumentsDefinitions = [];
 
-        foreach(explode(' ', $arguments) as $key => $argument) {
+        foreach (explode(' ', $arguments) as $key => $argument) {
             $argumentsDefinitions[] = new ArgumentDefinition($key, str_replace(':', '', $argument));
         }
 
@@ -102,7 +102,7 @@ class Console
 
         $argumentsDefinitions = [];
 
-        foreach(explode(' ', $options) as $key => $option) {
+        foreach (explode(' ', $options) as $key => $option) {
             $parts = explode('=', $option);
             $name = str_replace('-', '', $parts[0]);
             $default = $parts[1];
@@ -144,9 +144,9 @@ class Console
     private function validateArguments(array $argumentsDefinitions, array $arguments)
     {
         $totalMissing = count($argumentsDefinitions) - count($arguments);
-        if($totalMissing > 0) {
+        if ($totalMissing > 0) {
             $names = [];
-            for($i = count($argumentsDefinitions) - 1; $i >= count($argumentsDefinitions) - $totalMissing; $i--) {
+            for ($i = count($argumentsDefinitions) - 1; $i >= count($argumentsDefinitions) - $totalMissing; $i--) {
                 $names[] = $argumentsDefinitions[$i]->name;
             }
             $names = implode(' ', $names);
@@ -160,20 +160,20 @@ class Console
      * @return void
      * @throws \Exception
      */
-    private function validateOptions(array $optionsDefinitions, mixed $options)
+    private function validateOptions(array $optionsDefinitions, array $options)
     {
-        foreach($options as $option) {
+        foreach ($options as $option) {
             $parts = explode('=', $option);
             $name = str_replace('-', '', $parts[0]);
             $found = false;
 
-            foreach($optionsDefinitions as $optionDefinition) {
-                if($optionDefinition->name === $name) {
+            foreach ($optionsDefinitions as $optionDefinition) {
+                if ($optionDefinition->name === $name) {
                     $found = true;
                 }
             }
 
-            if(!$found) {
+            if (!$found) {
                 throw new \Exception("Provided option $name not found in command definition");
             }
         }
