@@ -202,7 +202,9 @@ class Console
         $commandOptionsCollection = new CommandOptionsCollection();
         for ($i = 0; $i < count($options); $i++) {
             $optionParts = explode('=', $options[$i]);
-            $commandOptionsCollection->add($optionParts[0], new CommandOption($optionParts[1]));
+            $name = str_replace('-', '', $optionParts[0]);
+            $value = $optionParts[1];
+            $commandOptionsCollection->add($name, new CommandOption($value));
         }
         return $commandOptionsCollection;
     }
