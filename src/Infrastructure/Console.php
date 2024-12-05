@@ -104,7 +104,7 @@ class Console
 
         foreach(explode(' ', $options) as $key => $option) {
             $parts = explode('=', $option);
-            $name = str_replace('--', '', $parts[0]);
+            $name = str_replace('-', '', $parts[0]);
             $default = $parts[1];
             $argumentsDefinitions[] = new OptionDefinition($key, $name, $default);
         }
@@ -164,7 +164,7 @@ class Console
     {
         foreach($options as $option) {
             $parts = explode('=', $option);
-            $name = $parts[0];
+            $name = str_replace('-', '', $parts[0]);
             $found = false;
 
             foreach($optionsDefinitions as $optionDefinition) {
