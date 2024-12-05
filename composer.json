@@ -1,0 +1,27 @@
+{
+    "name": "saasformation/framework-console",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SaaSFormation",
+            "email": "info@saasformation.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SaaSFormation\\Framework\\Console\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "psr/http-message": "^1",
+        "psr/container": "^2",
+        "league/climate": "^3.10"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    }
+}
