@@ -103,7 +103,10 @@ class Console
         $argumentsDefinitions = [];
 
         foreach(explode(' ', $options) as $key => $option) {
-            $argumentsDefinitions[] = new OptionDefinition($key, $option);
+            $parts = explode('=', $option);
+            $name = str_replace('--', '', $parts[0]);
+            $default = $parts[1];
+            $argumentsDefinitions[] = new OptionDefinition($key, $name, $default);
         }
 
         return $argumentsDefinitions;
