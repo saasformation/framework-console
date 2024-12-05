@@ -22,4 +22,15 @@ class CommandOptionsCollection
 
         return $this->options[$optionName];
     }
+
+    public function find(string $optionName): ?CommandOption
+    {
+        $option = null;
+
+        if(isset($this->options[$optionName])) {
+            $option = $this->options[$optionName];
+        }
+
+        return $option;
+    }
 }
